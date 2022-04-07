@@ -53,4 +53,32 @@ class TimeDisplay extends StatelessWidget {
       ],
     );
   }
+
+  static String parseTime(num time) {
+    String _h, _m, _p;
+    final _f = time.floor();
+    if (_f == 0) {
+      _h = '12';
+    } else if (_f > 12) {
+      _h = '${_f - 12}';
+    } else {
+      _h = '$_f';
+    }
+
+    if (time > _f) {
+      _m = '30';
+    } else {
+      _m = '00';
+    }
+
+    if (_f == 0) {
+      _p = 'AM';
+    } else if (_f >= 12) {
+      _p = 'PM';
+    } else {
+      _p = 'AM';
+    }
+
+    return '$_h:$_m $_p';
+  }
 }

@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:pavlok/config/assets.dart';
+import 'package:pavlok/models/clock_images.dart';
 import 'package:pavlok/models/habit_data.dart';
 import 'package:pavlok/screens/onboarding/widgets/time_selector.dart';
 
@@ -8,8 +11,12 @@ class OnBoardingController extends GetxController {
   late final HabitData habitData;
   late final FixedExtentScrollController wheelController;
 
+  final int timeGoal = 8;
+
   final wheelChildrenExtent = 60.0;
   final wheelMagnification = 1.1;
+
+  final totalClockSegments = 48;
 
   final List<String> days = [
     'Monday',
@@ -24,6 +31,37 @@ class OnBoardingController extends GetxController {
   final List<int> intervals = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
 
   final selectedDays = RxList<String>();
+
+  final _start = Rx<int>(0);
+  final _end = Rx<int>(4);
+
+  String get startTime => '';
+
+  String get endTime => '';
+
+  num get startTimeNum => mapIntToTimeInt(_start.value);
+
+  num get endTimeNum => mapIntToTimeInt(_end.value);
+
+  num get totalTimeNumDifference => (endTimeNum - startTimeNum).abs();
+
+  num get timeDifferenceHour => totalTimeNumDifference.floor();
+
+  num get timeDifferenceMin =>
+      totalTimeNumDifference > timeDifferenceHour ? 30 : 0;
+
+  String get sliderTip => totalTimeNumDifference > timeGoal
+      ? 'Over you sleep goal ( ${timeGoal}hrs )'
+      : 'Under you sleep goal ( ${timeGoal}hrs )';
+
+  int get start => _start.value;
+
+  int get end => _end.value;
+
+  void onTimeChanged(int start, int end, int _) {
+    _start.value = start;
+    _end.value = end;
+  }
 
   void toggleDay(String day) {
     if (selectedDays.contains(day)) {
@@ -57,6 +95,34 @@ class OnBoardingController extends GetxController {
 
   void saveInterval() {
     Get.back();
+  }
+
+  num mapIntToTimeInt(int value) {
+    if (value.isOdd) {
+      /// 30 mins added to time
+      return (((value - 1) / totalClockSegments) * 24) + 0.5;
+    }
+    return (value / totalClockSegments) * 24;
+  }
+
+  String mapTimeIntString(num value) {
+    return '';
+  }
+
+  Future<ClockImages> loadImages() async {
+    final _data = await Future.wait([
+      decodeImageFromList(
+        (await rootBundle.load(Assets.dark)).buffer.asUint8List(),
+      ),
+      decodeImageFromList(
+        (await rootBundle.load(Assets.light)).buffer.asUint8List(),
+      ),
+    ]);
+
+    return ClockImages(
+      dark: _data.first,
+      light: _data.last,
+    );
   }
 
   @override
