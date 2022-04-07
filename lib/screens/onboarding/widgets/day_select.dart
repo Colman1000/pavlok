@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pavlok/config/colors.dart';
+import 'package:pavlok/utils/helpers.dart';
 
 class DaySelect extends StatelessWidget {
   const DaySelect({
@@ -17,7 +18,7 @@ class DaySelect extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: onTap == null ? () {} : () => Helpers.tap(onTap),
       child: SizedBox(
         width: 36,
         height: 36,
@@ -59,6 +60,20 @@ class DaySelect extends StatelessWidget {
                 color: isSelected ? null : PavlokColors.grey,
                 shape: BoxShape.circle,
               ),
+              foregroundDecoration: isSelected
+                  ? BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          blurStyle: BlurStyle.outer,
+                          blurRadius: 50,
+                          spreadRadius: -3,
+                          offset: Offset(3, 1),
+                          color: Color(0xFFFFFFFF).withAlpha(100),
+                        ),
+                      ],
+                      shape: BoxShape.circle,
+                    )
+                  : null,
             ),
             Align(
               child: Text(

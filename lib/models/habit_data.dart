@@ -1,9 +1,12 @@
 class HabitData {
-  final String label, image;
+  final String label, image, inscription, begin, end;
 
   HabitData({
     required this.label,
+    required this.inscription,
     required this.image,
+    required this.begin,
+    required this.end,
   });
 
   @override

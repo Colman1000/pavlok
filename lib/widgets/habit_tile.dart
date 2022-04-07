@@ -34,7 +34,7 @@ class HabitTile extends StatelessWidget {
                 ),
             ]),
         child: InkWell(
-          onTap: onTap == null ? null : () => Helpers.tap(onTap),
+          onTap: onTap == null ? () {} : () => Helpers.tap(onTap),
           borderRadius: _rad,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -44,14 +44,16 @@ class HabitTile extends StatelessWidget {
                   image: habit.image,
                 ),
                 const SizedBox(width: 12),
-                Text(
-                  habit.label,
-                  style: GoogleFonts.manrope(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: isSelected
-                        ? PavlokColors.primaryDark
-                        : PavlokColors.primaryText,
+                Expanded(
+                  child: Text(
+                    habit.label,
+                    style: GoogleFonts.manrope(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: isSelected
+                          ? PavlokColors.primaryDark
+                          : PavlokColors.primaryText,
+                    ),
                   ),
                 ),
               ],

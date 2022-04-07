@@ -12,22 +12,37 @@ class HomeController extends GetxController
     HabitData(
       label: 'Set bedtime and wake up',
       image: Assets.sleep,
+      inscription: 'sleep',
+      begin: 'Bedtime',
+      end: 'Wake up',
     ),
     HabitData(
       label: 'Take a walk',
       image: Assets.walk,
+      inscription: 'walk',
+      begin: 'Start',
+      end: 'End',
     ),
     HabitData(
       label: 'Stay hydrated',
       image: Assets.bottle,
+      inscription: 'hydration',
+      begin: 'Begin',
+      end: 'End',
     ),
     HabitData(
       label: 'Call parents',
       image: Assets.call,
+      inscription: 'call',
+      begin: 'Start',
+      end: 'End',
     ),
     HabitData(
       label: 'Donate to charity',
       image: Assets.donate,
+      inscription: 'charity',
+      begin: 'Begin',
+      end: 'End',
     ),
   ];
 
@@ -35,18 +50,30 @@ class HomeController extends GetxController
     HabitData(
       label: "Can't wake up",
       image: Assets.sleep,
+      inscription: 'sleep',
+      begin: 'Bedtime',
+      end: 'Wake up',
     ),
     HabitData(
       label: 'Getting lazy for workout',
       image: Assets.walk,
+      inscription: 'workout',
+      begin: 'Start',
+      end: 'End',
     ),
     HabitData(
       label: 'Forgetting to drink water',
       image: Assets.bottle,
+      inscription: 'hydration',
+      begin: 'Begin',
+      end: 'End',
     ),
     HabitData(
       label: 'Spending on credit cards',
       image: Assets.donate,
+      inscription: 'spending',
+      begin: 'Begin',
+      end: 'End',
     ),
   ];
 

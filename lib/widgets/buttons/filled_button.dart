@@ -28,7 +28,7 @@ class ButtonFilled extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: ConstrainedBox(
         constraints: const BoxConstraints(minWidth: double.infinity - 48),
-        child: Ink(
+        child: Container(
           decoration: BoxDecoration(
             borderRadius: _rad,
             gradient: disabled
@@ -63,12 +63,24 @@ class ButtonFilled extends StatelessWidget {
               ]
             ],
           ),
+          foregroundDecoration: BoxDecoration(
+            borderRadius: _rad,
+            boxShadow: [
+              BoxShadow(
+                blurStyle: BlurStyle.outer,
+                blurRadius: 200,
+                spreadRadius: 5,
+                offset: const Offset(3, 1),
+                color: const Color(0xFFFFFFFF).withAlpha(50),
+              ),
+            ],
+          ),
           child: InkWell(
             borderRadius: _rad,
             onTap: disabled
                 ? null
                 : onPressed == null
-                    ? null
+                    ? () {}
                     : () => Helpers.tap(onPressed),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 20),

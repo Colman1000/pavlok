@@ -81,7 +81,7 @@ class OnBoardingView extends StatelessWidget {
                 child: Obx(
                   () => TimeDisplay(
                     color: PavlokColors.primary,
-                    label: 'Bedtime',
+                    label: _.habitData.begin,
                     image: Assets.dark,
                     value: TimeDisplay.parseTime(_.startTimeNum),
                   ),
@@ -91,7 +91,7 @@ class OnBoardingView extends StatelessWidget {
                 child: Obx(
                   () => TimeDisplay(
                     color: PavlokColors.secondary,
-                    label: 'Wake up',
+                    label: _.habitData.end,
                     image: Assets.light,
                     value: TimeDisplay.parseTime(_.endTimeNum),
                   ),

@@ -6,6 +6,7 @@ import 'package:pavlok/config/assets.dart';
 import 'package:pavlok/models/clock_images.dart';
 import 'package:pavlok/models/habit_data.dart';
 import 'package:pavlok/screens/onboarding/widgets/time_selector.dart';
+import 'package:pavlok/utils/helpers.dart';
 
 class OnBoardingController extends GetxController {
   late final HabitData habitData;
@@ -51,8 +52,8 @@ class OnBoardingController extends GetxController {
       totalTimeNumDifference > timeDifferenceHour ? 30 : 0;
 
   String get sliderTip => totalTimeNumDifference > timeGoal
-      ? 'Over you sleep goal ( ${timeGoal}hrs )'
-      : 'Under you sleep goal ( ${timeGoal}hrs )';
+      ? 'Over your ${habitData.inscription} goal ( ${timeGoal}hrs )'
+      : 'Under your ${habitData.inscription} goal ( ${timeGoal}hrs )';
 
   int get start => _start.value;
 
@@ -74,7 +75,7 @@ class OnBoardingController extends GetxController {
   final selectedInterval = Rx<int>(5);
 
   void openTimePicker(context) {
-    Feedback.forTap(context);
+    Helpers.tap(() {});
     showModalBottomSheet(
       context: context,
       constraints: BoxConstraints(maxHeight: Get.height * 0.6),
