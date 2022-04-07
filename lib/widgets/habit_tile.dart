@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pavlok/config/colors.dart';
 import 'package:pavlok/models/habit_data.dart';
+import 'package:pavlok/utils/helpers.dart';
 import 'package:pavlok/widgets/pavlok_icon.dart';
 
 class HabitTile extends StatelessWidget {
@@ -20,7 +21,7 @@ class HabitTile extends StatelessWidget {
     final _rad = BorderRadius.circular(16.0);
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Ink(
+      child: Container(
         decoration: BoxDecoration(
             borderRadius: _rad,
             color: isSelected ? PavlokColors.primaryBG : PavlokColors.white,
@@ -33,7 +34,7 @@ class HabitTile extends StatelessWidget {
                 ),
             ]),
         child: InkWell(
-          onTap: onTap,
+          onTap: onTap == null ? null : () => Helpers.tap(onTap),
           borderRadius: _rad,
           child: Padding(
             padding: const EdgeInsets.all(8.0),

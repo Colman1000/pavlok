@@ -74,6 +74,7 @@ class OnBoardingController extends GetxController {
   final selectedInterval = Rx<int>(5);
 
   void openTimePicker(context) {
+    Feedback.forTap(context);
     showModalBottomSheet(
       context: context,
       constraints: BoxConstraints(maxHeight: Get.height * 0.6),

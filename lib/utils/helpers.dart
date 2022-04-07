@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pavlok/config/constants.dart';
 
 class Helpers {
@@ -33,6 +34,11 @@ class Helpers {
         ),
       ),
     );
+  }
+
+  static void tap(VoidCallback? action) {
+    final _ = (Get.context ?? Get.overlayContext)!;
+    Feedback.wrapForTap(action, _);
   }
 }
 

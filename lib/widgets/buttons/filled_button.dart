@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pavlok/config/colors.dart';
+import 'package:pavlok/utils/helpers.dart';
 
 class ButtonFilled extends StatelessWidget {
   const ButtonFilled(
@@ -64,7 +65,11 @@ class ButtonFilled extends StatelessWidget {
           ),
           child: InkWell(
             borderRadius: _rad,
-            onTap: disabled ? null : onPressed,
+            onTap: disabled
+                ? null
+                : onPressed == null
+                    ? null
+                    : () => Helpers.tap(onPressed),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 20),
               child: Text(
