@@ -14,7 +14,7 @@ class OnBoardingController extends GetxController {
 
   final int timeGoal = 8;
 
-  final wheelChildrenExtent = 60.0;
+  final wheelChildrenExtent = 50.0;
   final wheelMagnification = 1.1;
 
   final totalClockSegments = 48;

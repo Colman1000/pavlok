@@ -24,84 +24,86 @@ class HomeView extends StatelessWidget {
     final _ = Get.find<HomeController>();
 
     return Scaffold(
-      body: Column(
-        children: [
-          const SizedBox(height: 55),
-          const Progress(total: 4, completed: 1),
-          const SizedBox(height: 32),
-          Text(
-            Intl.mainGoal.tr,
-            style: GoogleFonts.manrope(
+      body: SafeArea(
+        child: Column(
+          children: [
+            const SizedBox(height: 55),
+            const Progress(total: 4, completed: 1),
+            const SizedBox(height: 32),
+            Text(
+              Intl.mainGoal.tr,
+              style: GoogleFonts.manrope(
+                  color: PavlokColors.primaryText,
+                  fontSize: 24,
+                  fontWeight: FontWeight.w600),
+            ),
+            const SizedBox(height: 9),
+            Text(
+              Intl.startWithThese.tr,
+              style: GoogleFonts.manrope(
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
                 color: PavlokColors.primaryText,
-                fontSize: 24,
-                fontWeight: FontWeight.w600),
-          ),
-          const SizedBox(height: 9),
-          Text(
-            Intl.startWithThese.tr,
-            style: GoogleFonts.manrope(
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-              color: PavlokColors.primaryText,
+              ),
             ),
-          ),
-          const SizedBox(height: 40),
-          TabBar(
-            controller: _.tabController,
-            tabs: [
-              Tab(
-                child: Obx(
-                  () => TabChild(
-                    icon: Assets.leaf,
-                    label: Intl.startGoodHabit.tr,
-                    isSelected: _.selectedHabitTab.value == 0,
+            const SizedBox(height: 40),
+            TabBar(
+              controller: _.tabController,
+              tabs: [
+                Tab(
+                  child: Obx(
+                    () => TabChild(
+                      icon: Assets.leaf,
+                      label: Intl.startGoodHabit.tr,
+                      isSelected: _.selectedHabitTab.value == 0,
+                    ),
                   ),
                 ),
-              ),
-              Tab(
-                child: Obx(
-                  () => TabChild(
-                    icon: Assets.power,
-                    label: Intl.breakBadHabit.tr,
-                    isSelected: _.selectedHabitTab.value == 1,
+                Tab(
+                  child: Obx(
+                    () => TabChild(
+                      icon: Assets.power,
+                      label: Intl.breakBadHabit.tr,
+                      isSelected: _.selectedHabitTab.value == 1,
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
-          Expanded(
-            child: Obx(
-              () => PageTransitionSwitcher(
-                duration: const Duration(milliseconds: 200),
-                reverse: _.selectedHabitTab.value == 0,
-                transitionBuilder: (
-                  Widget child,
-                  Animation<double> animation,
-                  Animation<double> secondaryAnimation,
-                ) {
-                  return SharedAxisTransition(
-                    child: child,
-                    animation: animation,
-                    secondaryAnimation: secondaryAnimation,
-                    transitionType: SharedAxisTransitionType.horizontal,
-                  );
-                },
-                child: _.selectedHabitTab.value == 0
-                    ? const GoodHabits()
-                    : const BadHabits(),
+              ],
+            ),
+            Expanded(
+              child: Obx(
+                () => PageTransitionSwitcher(
+                  duration: const Duration(milliseconds: 200),
+                  reverse: _.selectedHabitTab.value == 0,
+                  transitionBuilder: (
+                    Widget child,
+                    Animation<double> animation,
+                    Animation<double> secondaryAnimation,
+                  ) {
+                    return SharedAxisTransition(
+                      child: child,
+                      animation: animation,
+                      secondaryAnimation: secondaryAnimation,
+                      transitionType: SharedAxisTransitionType.horizontal,
+                    );
+                  },
+                  child: _.selectedHabitTab.value == 0
+                      ? const GoodHabits()
+                      : const BadHabits(),
+                ),
               ),
             ),
-          ),
-          const SizedBox(height: 24),
-          Obx(
-            () => ButtonFilled(
-              'Next',
-              disabled: _.selectedHabit.value == null,
-              onPressed: _.nextPage,
+            const SizedBox(height: 12),
+            Obx(
+              () => ButtonFilled(
+                'Next',
+                disabled: _.selectedHabit.value == null,
+                onPressed: _.nextPage,
+              ),
             ),
-          ),
-          const SizedBox(height: 32),
-        ],
+            const SizedBox(height: 16),
+          ],
+        ),
       ),
     );
   }

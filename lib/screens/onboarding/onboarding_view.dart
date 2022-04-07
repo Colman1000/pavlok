@@ -24,90 +24,92 @@ class OnBoardingView extends StatelessWidget {
     final _ = Get.find<OnBoardingController>();
 
     return Scaffold(
-      body: ListView(
-        children: [
-          const SizedBox(height: 20),
-          const Align(
-            alignment: Alignment.centerLeft,
-            child: Padding(
-              padding: EdgeInsets.only(left: 16.0),
-              child: BackButton(),
-            ),
-          ),
-          const SizedBox(height: 20),
-          Align(
-            child: Text(
-              _.habitData.label,
-              style: GoogleFonts.manrope(
-                fontSize: 23,
-                fontWeight: FontWeight.w600,
-                color: PavlokColors.black,
+      body: SafeArea(
+        child: ListView(
+          children: [
+            const SizedBox(height: 12),
+            const Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: EdgeInsets.only(left: 16.0),
+                child: BackButton(),
               ),
             ),
-          ),
-          const SizedBox(height: 24),
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: RadialTimer(),
-          ),
-          const SizedBox(height: 20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const IconFromImage(
-                Assets.bulb,
-                color: PavlokColors.secondary,
-                size: 20,
-              ),
-              const SizedBox(width: 10),
-              Obx(
-                () => Text(
-                  _.sliderTip,
-                  style: GoogleFonts.manrope(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                    color: PavlokColors.black,
-                  ),
-                ),
-              )
-            ],
-          ),
-          const SizedBox(height: 24),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SizedBox(width: 32),
-              Expanded(
-                child: Obx(
-                  () => TimeDisplay(
-                    color: PavlokColors.primary,
-                    label: _.habitData.begin,
-                    image: Assets.dark,
-                    value: TimeDisplay.parseTime(_.startTimeNum),
-                  ),
+            const SizedBox(height: 20),
+            Align(
+              child: Text(
+                _.habitData.label,
+                style: GoogleFonts.manrope(
+                  fontSize: 23,
+                  fontWeight: FontWeight.w600,
+                  color: PavlokColors.black,
                 ),
               ),
-              Expanded(
-                child: Obx(
-                  () => TimeDisplay(
-                    color: PavlokColors.secondary,
-                    label: _.habitData.end,
-                    image: Assets.light,
-                    value: TimeDisplay.parseTime(_.endTimeNum),
+            ),
+            const SizedBox(height: 24),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: RadialTimer(),
+            ),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const IconFromImage(
+                  Assets.bulb,
+                  color: PavlokColors.secondary,
+                  size: 20,
+                ),
+                const SizedBox(width: 10),
+                Obx(
+                  () => Text(
+                    _.sliderTip,
+                    style: GoogleFonts.manrope(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                      color: PavlokColors.black,
+                    ),
+                  ),
+                )
+              ],
+            ),
+            const SizedBox(height: 24),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(width: 32),
+                Expanded(
+                  child: Obx(
+                    () => TimeDisplay(
+                      color: PavlokColors.primary,
+                      label: _.habitData.begin,
+                      image: Assets.dark,
+                      value: TimeDisplay.parseTime(_.startTimeNum),
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(width: 32),
-            ],
-          ),
-          const SizedBox(height: 24),
-          RepeatDaysSelect(),
-          const SizedBox(height: 16),
-          TimePicker(),
-          const SizedBox(height: 16),
-          ButtonFilled('Next'),
-          const SizedBox(height: 16),
-        ],
+                Expanded(
+                  child: Obx(
+                    () => TimeDisplay(
+                      color: PavlokColors.secondary,
+                      label: _.habitData.end,
+                      image: Assets.light,
+                      value: TimeDisplay.parseTime(_.endTimeNum),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 32),
+              ],
+            ),
+            const SizedBox(height: 24),
+            RepeatDaysSelect(),
+            const SizedBox(height: 16),
+            TimePicker(),
+            const SizedBox(height: 16),
+            ButtonFilled('Next'),
+            const SizedBox(height: 16),
+          ],
+        ),
       ),
     );
   }

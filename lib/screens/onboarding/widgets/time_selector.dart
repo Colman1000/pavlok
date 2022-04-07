@@ -88,6 +88,7 @@ class TimeSelector extends StatelessWidget {
                         magnification: _.wheelMagnification,
                         useMagnifier: true,
                         overAndUnderCenterOpacity: 0.4,
+                        perspective: 0.01,
                         diameterRatio: 10,
                       ),
                     ),
